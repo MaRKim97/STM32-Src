@@ -128,8 +128,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 			{
 				HAL_UART_Transmit(&huart1, rxBuf2 + 3, rxIdx2 - 4, 10);
 				HAL_UART_Transmit(&huart1, EL[op], strlen(EL[op]), 10);
-				HAL_UART_Transmit(&huart2, rxBuf2 + 3, rxIdx2 - 4, 10);
-				HAL_UART_Transmit(&huart2, "\r\n", 2, 10);
+				HAL_UART_Transmit(&huart1, rxBuf2 + 3, rxIdx2 - 4, 10);
+				HAL_UART_Transmit(&huart1, "\r\n", 2, 10);
 			}
 			else  //echo
 			{

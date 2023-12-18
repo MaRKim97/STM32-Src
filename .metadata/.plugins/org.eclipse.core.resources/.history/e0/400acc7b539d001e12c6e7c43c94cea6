@@ -128,8 +128,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 			{
 				HAL_UART_Transmit(&huart1, rxBuf2 + 3, rxIdx2 - 4, 10);
 				HAL_UART_Transmit(&huart1, EL[op], strlen(EL[op]), 10);
-				HAL_UART_Transmit(&huart2, rxBuf2 + 3, rxIdx2 - 4, 10);
-				HAL_UART_Transmit(&huart2, "\r\n", 2, 10);
+				HAL_UART_Transmit(&huart1, rxBuf2 + 3, rxIdx2 - 4, 10);
+				HAL_UART_Transmit(&huart1, "\r\n", 2, 10);
 			}
 			else  //echo
 			{
@@ -177,7 +177,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if(rxIdx1)
 	{
 		printf("%s\r\n", rxBuf1);
-		rxIdx1 = 0;
+		rxTdx1 = 0;
 	}
 }
 void LED_Control()
@@ -281,7 +281,6 @@ int main(void)
   }
   printf("OK! %d\r\n", op);
 
-  HAL_TIM_Base_Start_IT(&htim3);
   HAL_UART_Receive_IT(&huart1, &rx, 1);  //for BT connect
   HAL_UART_Receive_IT(&huart2, &rx, 1);  //for BT connect
   //HAL_UART_Receive_IT(&huart2, &rx, 1);
